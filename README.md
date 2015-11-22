@@ -1,4 +1,6 @@
-# Comparing the CMIP5 suite of climate models to observed global temperatures.
+# Response to Michaels and Knappenberger (2014) regarding the divergence between climate models and observed global temperatures.
 
-The below R script is aimed at replicating -- and critiquing -- a recent Cato Institute climate paper by Patrick Michaels & Chip Knappenberger (hereafter M&K). See: 
-http://www.cato.org/blog/agu-2014-quantifying-lack-consistency-between-climate-model-projections-observations-evolution
+This repository provides details on how to replicate -- and then critique -- a 2014 climate paper by Cato Institute researchers, [Patrick Michaels & Chip Knappenberger](http://www.cato.org/blog/agu-2014-quantifying-lack-consistency-between-climate-model-projections-observations-evolution) (hereafter M&K). 
+
+Please click [here](https://github.com/grantmcdermott/cmip5-models/blob/master/modelsVSobs.md) for the full discussion and accompanying *R* code.
+
