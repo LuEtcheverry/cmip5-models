@@ -26,7 +26,7 @@ Once that's ready, you'll see links to download the raw data in .txt format and 
 <img src="cmip5_step4.png" width=75%>
 </div>
 
-A final comment is that this data comes at a monthly resolution from 1860 to 2100 (for all 108!) models and is consequently much more detailed than we need for the current exercise. Here is a short script to clean the data (i.e. ignore future years, get into annual time steps, and group by model):
+A final comment is that this data comes at a monthly resolution from 1860 to 2100 (for all 108 models!) and is consequently much more detailed than we need for the current exercise. Here is a short script to clean the data (i.e. ignore future years, get into annual time steps, and group by model):
 
 
 ```r
