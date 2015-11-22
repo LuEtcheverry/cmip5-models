@@ -1,16 +1,11 @@
----
-title: "CMIP5 model ensemble versus observed global temperatures."
-author: "Grant R. McDermott"
-# date: "21 November 2015"
-output:
-  html_document:
-    keep_md: true
----
+# CMIP5 model ensemble versus observed global temperatures.
+Grant R. McDermott  
 
 Let's start by readying the necessary packages that we'll be using to analyse the data.
 
 
-```{r, message=F, warning=F}
+
+```r
 rm(list=ls()) ## Clear data
 
 require(readr) ## For reading in data
@@ -23,7 +18,8 @@ require(alr3) ## For calculating confidence intervals for regression estimates
 
 Next, we read in the data. Note that I have already uploaded the CMIP5 ensemble data to this GitHub repository, since that saves you from having to go through the [Climate Explorer](http://climexp.knmi.nl/) interface.[^1] The HadCRUT4 data, on the other hand, is already in a convenient form and so we'll download this data directly from the Met Office website. 
 
-```{r}
+
+```r
 ### CMIP5 ensemble ###
 cmip5 <- read_csv("cmip5.csv")
 
@@ -35,7 +31,8 @@ had <- read_table("http://www.metoffice.gov.uk/hadobs/hadcrut4/data/current/time
 
 Now we need to tidy the data and get the annual temperature means. We'll be using the extremely useful `tidyr` and `dplyr` packages from [Hadley](http://had.co.nz/), and also be making liberal use of the awesome pipe operator (`%>%`).
 
-```{r}
+
+```r
 ## First decide on dates for the recursive sample.
 end_year <- 2014 ## M&K use 2014. This is the fixed point for the recursive estimates.
 start_year <- end_year - 63 ## To coincide with's M&K's choice of 1951 when using 2014 as an end date.
@@ -55,7 +52,8 @@ had <-
 
 Using the annual data, we can now calculate the trends and recursive estimates for both the CMIP5 ensemble and the observed (i.e. HadCRUT4) temperature data. Note that the CMIP5 recursive regressions are grouped by model and that we multiply the end result by 10 to obtain the decadal trend, so as to be consistent with M&K's paper.
 
-```{r}
+
+```r
 ### CMIP5 ensemble ###
 cmip5_trend <- 
   cmip5 %>%
@@ -92,7 +90,8 @@ had_trend <-
 
 Nearly there. We now combine our recursive trend estimates in a single graph that matches [this one](http://object.cato.org/sites/cato.org/files/wp-content/uploads/gsr_12_18_14_fig2.png) from M&K. I'd normally do this in `ggplot2`, but I'm using R's base plotting features (with a number of little tweaks) to try and get it looking as close to M&K's original as possible.
 
-```{r}
+
+```r
 par(las = 1) # Rotate y-axis labels sideways
 plot(cmip5_trend_summ$Length, cmip5_trend_summ$Trend.mean,
      type="l", lwd = 1.5,
@@ -133,6 +132,8 @@ lines(had_trend$Length, had_025_line, col = "red", lwd = 1.5, lty = 1)
 points(had_trend$Length, had_trend$Trend, col = had.col, pch = 20)
 ```
 
+![](modelsVSobs_files/figure-html/unnamed-chunk-5-1.png) 
+
 Good news: We have successfully replicated M&K's key figure! 
 
 Now comes the interesting part, however, because M&K use the figure [to claim](http://www.cato.org/blog/agu-2014-quantifying-lack-consistency-between-climate-model-projections-observations-evolution) that: *"[A]t the global scale, this suite of climate models has failed. Treating them as mathematical hypotheses, which they are, means that it is the duty of scientists to reject their predictions in lieu of those with a lower climate sensitivity."* 
@@ -146,7 +147,8 @@ With these points in mind, let us add the 95% error bars to each of the "observe
 * A small technical point is that the lm.fit.recursive from the `quantreg` package doesn't produce standard errors or confidence intervals. So we'll obtain these manually by using the do() function in combination with apply functions. We could also use a for loop, but this way is much more efficient.
 
 
-```{r}
+
+```r
 # had_rec <- 
 #   had %>%
 #   arrange(desc(Year)) %>%

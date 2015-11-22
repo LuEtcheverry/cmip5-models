@@ -1,10 +1,4 @@
----
-title: "CMIP5 download instructions"
-#author: "Grant R. McDermott"
-output:
-  html_document:
-    keep_md: true
----
+# CMIP5 download instructions
 
 To download the full CMIP5 ensemble data, first go to the [Climate Explorer website](http://climexp.knmi.nl/selectfield_cmip5.cgi?id=someone@somewhere#surface) to get the model scenario runs. 
 
@@ -34,7 +28,8 @@ Once that's ready, you'll see links to download the raw data in .txt format and 
 
 A final comment is that this data comes at a monthly resolution from 1860 to 2100 (for all 108!) models and is consequently much more detailed than we need for the current exercise. Here is a short script to clean the data (i.e. ignore future years, get into annual time steps, and group by model):
 
-```{r, eval = F}
+
+```r
 require(readr) ## For reading in data
 require(tidyr) ## For data tidying (gather, etc.)
 require(dplyr) ## For data munging and manipulation (filter, mutate, etc.)
@@ -56,5 +51,4 @@ cmip5 <-
 
 ## Save this new dataset
 write_csv(cmip5, "cmip5.csv")
-
 ```
