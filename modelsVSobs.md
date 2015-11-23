@@ -1,6 +1,6 @@
 # Comparing the CMIP5 suite of climate models to observed global temperatures.
 
-## Reproducing M&K's key figure
+## Reproducing Michaels and Knappenberger (M&K's) key figure
 
 Let's start by readying the necessary packages that we'll be using to analyse the data.
 
@@ -191,4 +191,4 @@ Now, you may argue that it makes sense to use the most recent year as your start
 
 Note: To obtain these last two figures all you need to do is re-run the code, but assign a new end year as the fixed point for the regressions (e.g.`end_year <- c(2014, 2005, 2000)[2]` for 2005) at the top of the script.
 
-[^1]: If you *really* can't help yourself, click [here](https://github.com/grantmcdermott/cmip5-models/blob/master/cmip5_download/cmip5_download.md) for instructions on how to download and clean the CMIP5 ensemble data.
+[^1]: If you *really* can't help yourself, click [here](http://rawgit.com/grantmcdermott/cmip5-models/master/cmip5_download/cmip5_download.html) for instructions on how to download and clean the CMIP5 ensemble data.

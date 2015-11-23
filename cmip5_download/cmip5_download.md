@@ -4,28 +4,40 @@ To download the full CMIP5 ensemble data, first go to the [Climate Explorer webs
 
 Scroll down to "all models" => "rcp45to85" and choose the first option under the "tas" column (i.e. 106). Note: This actually gives us 108 models, so I'm not entirely sure why it says 106... 
 
+\
+
 <div align="center">
 <img src="cmip5_step1.png" width=75%>
 </div>
 
+\
 Scroll back up to click *Select Field*. 
+
+\
 
 <div align="center">
 <img src="cmip5_step2.png" width=75%>
 </div>
 
+\
 On the next page, click *Make time series*. Wait for the data to load. This may take a few minutes. 
+
+\
 
 <div align="center">
 <img src="cmip5_step3.png" width=75%>
 </div>
 
+\
 Once that's ready, you'll see links to download the raw data in .txt format and you're good to go.
+
+\
 
 <div align="center">
 <img src="cmip5_step4.png" width=75%>
 </div>
 
+\
 A final comment is that this data comes at a monthly resolution from 1860 to 2100 (for all 108 models!) and is consequently much more detailed than we need for the current exercise. Here is a short script to clean the data (i.e. ignore future years, get into annual time steps, and group by model):
 
 
@@ -52,3 +64,5 @@ cmip5 <-
 ## Save this new dataset
 write_csv(cmip5, "cmip5.csv")
 ```
+
+You can view or download this already-cleaned dataset [here](https://github.com/grantmcdermott/cmip5-models/blob/master/cmip5.csv).
